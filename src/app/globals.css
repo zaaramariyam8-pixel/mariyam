@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Custom CSS carried over from the Stitch export.
+ * Changes (marked CHANGED) are deliberate; everything else is as exported.
+ */
+@layer base {
+  html,
+  body {
+    /* CHANGED: was width:100vw, which causes sideways scrolling on desktop
+       when a vertical scrollbar is present. 100% looks identical on mobile. */
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    overscroll-behavior: none;
+    background-color: #111318;
+  }
+
+  /* Space for phone notches / home-indicator bars (used by header + bottom nav). */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  .pt-safe {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+
+  main > :first-child {
+    margin-top: 0 !important;
+  }
+  main > :last-child {
+    margin-bottom: 0 !important;
+  }
+}
+
+/* Hides the scrollbar, as in the Stitch design. */
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Respect people who ask their device for less motion (accessibility). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
